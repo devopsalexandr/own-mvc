@@ -15,8 +15,9 @@ class Router
         $controller = self::makeValidName($controllerName)."Controller";
         $action = self::makeValidName($actionName);
 
-        if(class_exists($controller)){
-            echo "asdasd";
+        if(!class_exists($controller)){
+            throw new ControllerNotFoundException($controller);
+            // or add default values?
         }
     }
 

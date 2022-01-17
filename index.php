@@ -6,5 +6,10 @@ require_once 'core/helpers.php';
 requireExceptions();
 requireControllers();
 
+try {
+    Router::make();
+} catch (Exception $exception){
 
-Router::make();
+    if($exception instanceof ControllerNotFoundException)
+        echo json_encode(["error" => $exception->getMessage()]);
+}
