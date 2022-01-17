@@ -28,6 +28,8 @@ class Router
 
             $action = self::$defaultAction;
         }
-    }
 
+        $controller = new $controller();
+        $controller->{$action}();
+    }
 }
