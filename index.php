@@ -2,4 +2,8 @@
 require_once 'core/Controller.php';
 require_once 'core/Router.php';
 
-Router::Make();
+require_once 'core/Exceptions/ControllerNotFountException.php';
+
+
+
+Router::make();
