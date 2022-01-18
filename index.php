@@ -23,10 +23,18 @@ requireModels();
 
 $comment = new Comment($conn->getConnection());
 
-$comments = $comment->findAll();
+$comment->title = "third title";
+$comment->email = "asdasd@mail.com";
+$comment->body = "asdasdasdm";
+$comment->username = "ksenia";
+$comment->date = "2022-01-18";
 
+$comment->create();
 
-print_r($comments[0]->getId());
+//$comments = $comment->findAll();
+//
+//
+//print_r($comments[0]->getId());
 
 
 try {
