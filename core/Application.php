@@ -11,6 +11,7 @@ class Application
 
         $controllerName = !empty($routes[1]) ? $routes[1] : self::$defaultController;
         $actionName = !empty($routes[2]) ? $routes[2] : self::$defaultAction;
+        $requestData = $_REQUEST;
 
         $controller = ucfirst(mb_strtolower($controllerName))."Controller";
         $action = $actionName;
@@ -36,7 +37,9 @@ class Application
         if($requestName){
             $request = new $requestName();
 
-
+            foreach ($requestData as $key => $data){
+                $request->{$key} = $data;
+            }
 
             $controller->{$action}($request);
             return;
