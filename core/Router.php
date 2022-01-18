@@ -2,7 +2,7 @@
 
 class Router
 {
-    public static $defaultController = 'HomeController';
+    public static $defaultController = 'Home';
     public static $defaultAction = 'index';
 
     public static function make(){

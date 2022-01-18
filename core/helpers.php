@@ -15,3 +15,6 @@ function requireExceptions(){
 function requireControllers(){
     requireFiles("./Controllers");
 }
+function requireModels(){
+    requireFiles("./Models");
+}
