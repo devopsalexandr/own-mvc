@@ -38,7 +38,7 @@ $comment->create();
 
 
 try {
-    Router::make();
+    Application::boot();
 } catch (Exception $exception){
 
     if($exception instanceof ControllerNotFoundException)

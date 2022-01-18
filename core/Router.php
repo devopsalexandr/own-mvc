@@ -1,11 +1,11 @@
 <?php
 
-class Router
+class Application
 {
     public static $defaultController = 'Home';
     public static $defaultAction = 'index';
 
-    public static function make(){
+    public static function boot(){
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
