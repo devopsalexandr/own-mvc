@@ -3,6 +3,6 @@
 class HomeController extends Controller
 {
     public function index(){
-        echo 123;
+        echo json_encode(["result" => "welcome to home page"]);
     }
 }
