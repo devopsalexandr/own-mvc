@@ -3,6 +3,7 @@
 require_once 'core/Controller.php';
 require_once 'core/Router.php';
 require_once 'core/BaseModel.php';
+require_once 'core/Request.php';
 
 require_once 'core/helpers.php';
 require_once 'core/settings.php';
@@ -14,6 +15,7 @@ $conn = DbConnection::getInstance();
 requireExceptions();
 requireControllers();
 requireModels();
+requireRequests();
 
 //$c = $conn->getConnection()->query("SELECT * FROM `comments`")->fetchObject(Comment::class);
 //$c = $conn->getConnection()->query("SELECT * FROM `comments`");
@@ -21,15 +23,15 @@ requireModels();
 //
 //print_r($cc[1]->getTitle());
 
-$comment = new Comment($conn->getConnection());
-
-$comment->title = "third title";
-$comment->email = "asdasd@mail.com";
-$comment->body = "asdasdasdm";
-$comment->username = "ksenia";
-$comment->date = "2022-01-18";
-
-$comment->create();
+//$comment = new Comment($conn->getConnection());
+//
+//$comment->title = "third title";
+//$comment->email = "asdasd@mail.com";
+//$comment->body = "asdasdasdm";
+//$comment->username = "ksenia";
+//$comment->date = "2022-01-18";
+//
+//$comment->create();
 
 //$comments = $comment->findAll();
 //

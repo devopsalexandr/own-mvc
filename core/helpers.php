@@ -18,3 +18,7 @@ function requireControllers(){
 function requireModels(){
     requireFiles("./Models");
 }
+
+function requireRequests(){
+    requireFiles("./FormRequests");
+}

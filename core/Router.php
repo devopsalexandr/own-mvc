@@ -29,7 +29,30 @@ class Application
             $action = self::$defaultAction;
         }
 
+        $requestName = self::getRequestFromMethod($controller, $action);
+
         $controller = new $controller();
+
+        if($requestName){
+            $request = new $requestName();
+
+
+
+            $controller->{$action}($request);
+            return;
+        }
         $controller->{$action}();
+    }
+
+    private static function getRequestFromMethod($controller, $action)
+    {
+        $reflector = new ReflectionClass($controller);
+        $parameters = $reflector->getMethod($action)->getParameters();
+
+        if(count($parameters) == 0)
+            return null;
+
+        $c = $parameters[0]->getType();
+        return $c->getName();
     }
 }
