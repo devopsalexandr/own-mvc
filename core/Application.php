@@ -5,7 +5,7 @@ class Application
     public static $defaultController = 'Home';
     public static $defaultAction = 'index';
 
-    public static function boot(){
+    public static function boot($dbconnection){
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
@@ -32,7 +32,13 @@ class Application
 
         $requestName = self::getRequestFromMethod($controller, $action);
 
-        $controller = new $controller();
+        $controllerModelRequire = self::getConstructorModel($controller);
+
+
+
+        $controller = ($controllerModelRequire)
+            ? new $controller(new $controllerModelRequire($dbconnection))
+            : new $controller();
 
         if($requestName){
             $request = new $requestName();
@@ -51,6 +57,23 @@ class Application
     {
         $reflector = new ReflectionClass($controller);
         $parameters = $reflector->getMethod($action)->getParameters();
+
+        if(count($parameters) == 0)
+            return null;
+
+        $c = $parameters[0]->getType();
+        return $c->getName();
+    }
+
+    private static function getConstructorModel($controller)
+    {
+        $reflector = new ReflectionClass($controller);
+        $constructor = $reflector->getConstructor();
+
+        if(!$constructor)
+            return null;
+
+        $parameters = $constructor->getParameters();
 
         if(count($parameters) == 0)
             return null;
